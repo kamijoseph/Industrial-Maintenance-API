@@ -1,0 +1,14 @@
+[project]
+name = "industrial-maintenance-api"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "alembic>=1.18.1",
+    "asyncmy>=0.2.11",
+    "fastapi[all]>=0.128.0",
+    "pydantic>=2.12.5",
+    "python-dotenv>=1.2.1",
+    "sqlalchemy>=2.0.46",
+]
