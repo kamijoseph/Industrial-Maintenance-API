@@ -27,7 +27,7 @@ class Equipment(Base):
         "InspectionLog",
         back_populates = "equipment"
     )
-    maintenance_schedule = relationship(
+    maintenance_schedules = relationship(
         "MaintenanceSchedule",
         back_populates = "equipment"
     )
