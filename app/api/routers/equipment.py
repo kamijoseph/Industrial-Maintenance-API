@@ -14,6 +14,7 @@ router = APIRouter(
     tags = ["Equipment"]
 )
 
+# create equipment post router
 @router.post("/", response_model=EquipmentRead)
 def create_equipment(
     payload: EquipmentCreate,
@@ -21,6 +22,7 @@ def create_equipment(
 ):
     return crud.create_equipment(db, payload)
 
+# get equipment router
 @router.get("/", response_model=List[EquipmentRead])
 def read_equipment(
     equipment_id: int,
@@ -33,3 +35,10 @@ def read_equipment(
             detail = "Equipment not found"
         )
     return equipment
+
+# list equipments
+@router.get("/", response_model=List[EquipmentRead])
+def list_equipment(
+    db: Session = Depends(get_db)
+):
+    return crud.list_equipment(db)
