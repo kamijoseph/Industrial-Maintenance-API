@@ -5,7 +5,7 @@ class EquipmentBase(BaseModel):
     name: str
     location: str
 
-class EquipmnentCreate(EquipmentBase):
+class EquipmentCreate(EquipmentBase):
     pass
 
 class EquipmentRead(EquipmentBase):
