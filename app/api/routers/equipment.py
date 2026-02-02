@@ -7,6 +7,8 @@ from app.db.session import get_db
 from app.schemas.equipment import EquipmentCreate, EquipmentRead
 from app.crud import equipment as crud
 
+from typing import List
+
 router = APIRouter(
     prefix = "/equipment",
     tags = ["Equipment"]
@@ -18,3 +20,16 @@ def create_equipment(
     db: Session = Depends(get_db)
 ):
     return crud.create_equipment(db, payload)
+
+@router.get("/", response_model=List[EquipmentRead])
+def read_equipment(
+    equipment_id: int,
+    db: Session = Depends(get_db)
+):
+    equipment = crud.get_equipment(db, equipment_id)
+    if not equipment:
+        raise HTTPException(
+            status_code = 404,
+            detail = "Equipment not found"
+        )
+    return equipment
