@@ -2,9 +2,9 @@
 # equipment crud
 from sqlalchemy.orm import Session
 from app.models.equipment import Equipment
-from app.schemas.equipment import EquipmnentCreate
+from app.schemas.equipment import EquipmentCreate
 
-def create_equipment(db: Session, data: EquipmnentCreate) -> Equipment:
+def create_equipment(db: Session, data: EquipmentCreate) -> Equipment:
     equipment = Equipment(**data.model_dump())
     db.add(equipment)
     db.commit()

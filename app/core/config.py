@@ -1,4 +1,5 @@
-from pydantic import BaseSettings
+from urllib.parse import quote_plus
+from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     MYSQL_USER: str
@@ -9,8 +10,9 @@ class Settings(BaseSettings):
 
     @property
     def DATABASE_URL(self) -> str:
+        password_encoded = quote_plus(self.MYSQL_PASSWORD)
         return (
-            f"mysql+pymysql://{self.MYSQL_USER}:{self.MYSQL_PASSWORD}"
+            f"mysql+pymysql://{self.MYSQL_USER}:{password_encoded}"
             f"@{self.MYSQL_HOST}:{self.MYSQL_PORT}/{self.MYSQL_DB}"
         )
 
