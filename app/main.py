@@ -7,6 +7,7 @@ from app.api.routers import (
     maintenance
 )
 
+# initializse app
 app = FastAPI(
     title = "Industrial Maintenance API",
     version = "1.0.0",
