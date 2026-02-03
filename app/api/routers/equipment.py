@@ -2,12 +2,12 @@
 # equipment routers
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
+from typing import List
 
 from app.db.session import get_db
 from app.schemas.equipment import EquipmentCreate, EquipmentRead
 from app.crud import equipment as crud
 
-from typing import List
 
 router = APIRouter(
     prefix = "/equipment",
@@ -22,8 +22,15 @@ def create_equipment(
 ):
     return crud.create_equipment(db, payload)
 
-# get equipment router
+# list equipments
 @router.get("/", response_model=List[EquipmentRead])
+def list_equipment(
+    db: Session = Depends(get_db)
+):
+    return crud.list_equipment(db)
+
+# get equipment router
+@router.get("/{equipment_id}", response_model=EquipmentRead)
 def read_equipment(
     equipment_id: int,
     db: Session = Depends(get_db)
@@ -36,9 +43,3 @@ def read_equipment(
         )
     return equipment
 
-# list equipments
-@router.get("/", response_model=List[EquipmentRead])
-def list_equipment(
-    db: Session = Depends(get_db)
-):
-    return crud.list_equipment(db)
