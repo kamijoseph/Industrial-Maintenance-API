@@ -12,6 +12,7 @@ app = FastAPI(
     version = "1.0.0",
 )
 
+# riuters
 app.include_router(equipment.router)
 app.include_router(technician.router)
 app.include_router(inspection.router)
