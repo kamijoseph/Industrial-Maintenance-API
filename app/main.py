@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 
+# import the routers
 from app.api.routers import (
     equipment,
     technician,
